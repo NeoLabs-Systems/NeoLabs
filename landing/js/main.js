@@ -52,7 +52,7 @@
   const t0 = performance.now();
 
   const count = pnodes.length || 1;
-  const rings = pnodes.map((_, i) => ({ f: count === 1 ? 1 : 0.46 + 0.54 * i / (count - 1), a: -1.2 + i * 2.399, v: 0.13 - 0.025 * i }));
+  const rings = pnodes.map((_, i) => ({ f: count === 1 ? 1 : innerWidth < 900 ? 0.62 + 0.38 * i / (count - 1) : 0.46 + 0.54 * i / (count - 1), a: -1.2 + i * 2.399, v: 0.13 - 0.025 * i }));
   const dust = Array.from({ length: innerWidth < 700 ? 46 : 110 }, () => ({
     f: 0.3 + Math.random() * 1.15,
     a: Math.random() * 6.283,
@@ -101,7 +101,7 @@
       canvas.height = ch * dpr;
       const hr = hero.getBoundingClientRect();
       const sr = slot.getBoundingClientRect();
-      anchor = { x: sr.left - hr.left + sr.width / 2, y: sr.top - hr.top + sr.height / 2, R: Math.min(sr.width, sr.height) * (w < 900 ? 0.38 : 0.43) };
+      anchor = { x: sr.left - hr.left + sr.width / 2, y: sr.top - hr.top + sr.height / 2, R: Math.min(sr.width, sr.height) * (w < 900 ? 0.4 : 0.43) };
     }
     dirty = 60;
   }
@@ -516,6 +516,8 @@
   readColors();
   grain();
   measure();
+  // The orbit follows its slot, whose size changes with the window and once fonts load.
+  if (slot && 'ResizeObserver' in window) new ResizeObserver(measure).observe(slot);
   requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('ready')));
   setTimeout(() => pnodes.forEach((n) => n.classList.add('in')), still ? 0 : 700);
   requestAnimationFrame(frame);
