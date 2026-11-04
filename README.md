@@ -50,10 +50,6 @@
   <img src=".github/readme/idea.jpg" alt="Most AI lives on someone else's computer. NeoLabs is built the other way around: your server, your memory, any model, and source code you can read." width="100%">
 </p>
 
-## 🧭 One sentence, three systems
-
-You make a small promise in a meeting. Here is what happens next. This is an example run.
-
 <table>
   <tr>
     <td width="50%"><img src=".github/readme/story-1.jpg" alt="NeoRecall hears the promise and detects it"></td>
@@ -64,10 +60,6 @@ You make a small promise in a meeting. Here is what happens next. This is an exa
     <td><img src=".github/readme/story-4.jpg" alt="NeoRouter skips busy models and answers for $0.00"></td>
   </tr>
 </table>
-
-## ✨ The systems
-
-Each one is complete alone and better connected.
 
 <a href="https://github.com/NeoLabs-Systems/NeoRecall"><img src=".github/readme/neorecall.jpg" alt="NeoRecall: private audio memory you host yourself" width="100%"></a>
 
@@ -95,13 +87,9 @@ Each one is complete alone and better connected.
 
 Prefer your own tools? Paste NeoRecall's MCP URL into Claude, ChatGPT or Cursor for read-only recall.
 
-## ⚖️ Why NeoLabs
-
 <p align="center">
   <img src=".github/readme/why.jpg" alt="Comparison of NeoLabs and hosted assistants on where they run, the model, source code, memory, availability and price" width="100%">
 </p>
-
-The hosted column comes from the [dated comparison in NeoAgent's docs](https://github.com/NeoLabs-Systems/NeoAgent/blob/main/docs/why-neoagent.md).
 
 <p align="center">
   <img src=".github/readme/boundaries.jpg" alt="Promises, written in code: approval before risky actions, logins the model never sees, no covert mode, proof before delete, free means free, and prompts stay out of the logs" width="100%">
@@ -109,7 +97,7 @@ The hosted column comes from the [dated comparison in NeoAgent's docs](https://g
 
 ## 🚀 Get started
 
-Pick the one you need today. Each runs on a home server, a NAS, a VPS or your own computer, and the first account you create becomes the administrator.
+Pick the one you need today. Each runs on a home server, a NAS, a VPS or your own computer.
 
 **[NeoRecall](https://github.com/NeoLabs-Systems/NeoRecall)**, then open http://localhost:4500
 
@@ -129,34 +117,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/NeoLabs-Systems/NeoAgent/mai
 bash <(curl -fsSL https://raw.githubusercontent.com/NeoLabs-Systems/NeoRouter/main/install.sh)
 ```
 
-## 🌐 This repository
-
-<img src=".github/readme/phone.jpg" alt="The NeoLabs home page on a phone" width="240" align="right">
-
-This is the NeoLabs home page: static HTML, CSS and JavaScript with no runtime dependencies. You need Node.js 20 or newer to build it.
-
-```bash
-npm start
-```
-
-That builds the site into `dist/` and serves it at http://localhost:4870.
-
-| To change | Edit |
-| --- | --- |
-| A system's copy, facts, links or install command | `landing/data/site.js` |
-| Page structure and other copy | `landing/index.template.html` |
-| Colors, type and layout | `landing/css/styles.css` |
-| Motion and demos | `landing/js/main.js` |
-
-**Add a system:** add one entry to `PRODUCTS` in `landing/data/site.js`. The orbit, nav, card, install tab and footer follow from it.
-
-**Deploy:** pushes to `main` publish through GitHub Pages once the repository is public and **Settings → Pages → Source** is set to **GitHub Actions**.
-
 <br clear="right">
-
-## 🧪 Project status
-
-All three systems are in **beta**, so expect breaking changes. They are open source under [AGPL-3.0](https://github.com/NeoLabs-Systems/NeoAgent/blob/main/LICENSE).
 
 <p align="center">
   <img src=".github/readme/close.jpg" alt="Start with one. Keep all three." width="100%">
