@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{meta.title}}</title>
+  <meta name="description" content="{{meta.description}}">
+  <meta name="theme-color" content="#0e1511" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f1e8" media="(prefers-color-scheme: light)">
+  <meta property="og:title" content="{{meta.title}}">
+  <meta property="og:description" content="{{meta.description}}">
+  <meta property="og:type" content="website">
+  <sc-if value="{{meta.url}}"><link rel="canonical" href="{{meta.url}}">
+  <meta property="og:url" content="{{meta.url}}">
+  <meta property="og:image" content="{{meta.url}}assets/social-preview.png"></sc-if>
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="assets/logos/neolabs.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,380;0,9..144,420;0,9..144,560;1,9..144,380;1,9..144,420&amp;family=IBM+Plex+Mono:wght@450;500;600&amp;family=Inter:wght@440;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <noscript><style>.orbit-slot, .rail { display: none; } .hero-grid { grid-template-columns: minmax(0, 1fr); } .story-track, .story-stage { height: auto; } .story-stage { position: static; } .sts { display: grid; gap: 72px; } .st { position: static; opacity: 1; visibility: visible; }</style></noscript>
+</head>
+<body>
+<div class="nl" data-nl>
+  <script>document.currentScript.parentNode.classList.add('js')</script>
+
+  <!-- NAV -->
+  <header class="nav">
+    <nav class="nav-in" aria-label="Main">
+      <a class="brand" href="#top" aria-label="NeoLabs home"><img src="assets/logos/neolabs.svg" alt="" width="32" height="32"><span>NeoLabs</span></a>
+      <div class="nav-links">
+        <a href="#how">How it fits</a>
+        <sc-for list="{{products}}" as="p"><a href="#{{p.id}}">{{p.name}}</a></sc-for>
+        <a href="#why">Why NeoLabs</a>
+      </div>
+      <div class="nav-end">
+        <a class="btn btn-g btn-s" href="https://github.com/NeoLabs-Systems" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-p btn-s" href="#install">Get started</a>
+      </div>
+      <button class="burger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu" data-burger>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"></path></svg>
+      </button>
+    </nav>
+    <div class="sheet" id="menu" data-sheet hidden>
+        <a href="#how">How it fits</a>
+        <sc-for list="{{products}}" as="p"><a href="#{{p.id}}">{{p.name}}</a></sc-for>
+        <a href="#why">Why NeoLabs</a>
+        <a href="#install">Get started</a>
+        <a href="https://github.com/NeoLabs-Systems" target="_blank" rel="noopener">GitHub</a>
+      </div>
+  </header>
+
+  <main>
+    <!-- HERO: the NeoLabs mark, alive. Each product is a node on its orbit, your server is the core. -->
+    <section class="hero" id="top" data-hero>
+      <div class="hero-amb" aria-hidden="true"></div>
+      <canvas class="hero-cv" data-orbit aria-hidden="true"></canvas>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow fade-in"><i class="pip"></i>Self-hosted · Open source</p>
+          <h1 class="hx" aria-label="AI you actually own.">
+            <span class="ln" style="--d:0" aria-hidden="true"><span>AI you</span></span>
+            <span class="ln" style="--d:1" aria-hidden="true"><span>actually</span></span>
+            <span class="ln" style="--d:2" aria-hidden="true"><span><em>own.</em></span></span>
+          </h1>
+          <p class="lede fade-in">NeoLabs builds three self-hosted systems that work as one. NeoRecall hears your day, NeoAgent acts on it, NeoRouter picks the best model for every request. On your hardware, with the models you choose.</p>
+          <div class="cta-row fade-in">
+            <a class="btn btn-p" href="#install" data-mag>Get started<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></a>
+            <a class="btn btn-g" href="#how" data-mag>See how it fits together</a>
+          </div>
+          <p class="hero-tags fade-in">AGPL-3.0 · Docker · macOS · Windows · Linux</p>
+        </div>
+        <div class="orbit-slot" data-anchor>
+          <span class="core-tag">Your server</span>
+          <sc-for list="{{products}}" as="p">
+            <a class="pnode" data-pnode href="#{{p.id}}" aria-label="{{p.name}}: {{p.short}}"><img src="{{p.logo}}" alt="" width="62" height="62"><span>{{p.name}}</span></a>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-label="Works with Groq, Google Gemini, Cerebras, Mistral, OpenRouter and many more model providers">
+      <div class="ticker-in" aria-hidden="true">
+        <ul><sc-for list="{{providers}}" as="v"><li>{{v}}</li></sc-for></ul>
+        <ul><sc-for list="{{providers}}" as="v"><li>{{v}}</li></sc-for></ul>
+      </div>
+    </div>
+
+    <!-- THESIS: words light up with the scroll -->
+    <section class="sec" data-thesis>
+      <div class="wrap">
+        <p class="eyebrow rv" style="margin-bottom: 30px"><i class="pip"></i>The idea</p>
+        <p class="thesis">
+          <sc-for list="{{thesis}}" as="w"><span class="w {{w.cls}}" data-w>{{w.t}}</span></sc-for>
+        </p>
+      </div>
+    </section>
+
+    <!-- STORY: one sentence travels through all three systems -->
+    <section class="story" id="how" aria-label="How the systems fit together">
+      <div class="story-track" data-story>
+        <div class="story-stage">
+          <div class="wrap">
+            <div class="story-top">
+              <h2 class="story-title">One sentence, three systems.</h2>
+              <p class="mono" style="font-size: 12px; color: var(--ink-3)">Example run</p>
+            </div>
+            <div class="sts">
+
+              <article class="st on" data-st>
+                <div class="st-copy">
+                  <p class="st-time"><img src="assets/logos/neorecall.svg" alt="" width="34" height="34">10:14 · NeoRecall</p>
+                  <h3 class="st-h">It hears.</h3>
+                  <p class="lede">You make a small promise in a meeting. NeoRecall detects the speech and the speaker on your own machine and catches what matters.</p>
+                </div>
+                <div class="app">
+                  <div class="app-h p-i"><span>Capture · live transcript</span><span class="tag ok">Recording</span></div>
+                  <div class="wave p-i" style="--d:1" aria-hidden="true"><sc-for list="{{wave}}" as="b"><i style="--i:{{b.i}};--h:{{b.h}}"></i></sc-for></div>
+                  <p class="well p-i" style="--d:2; font-size: 17px">Let’s use the smaller enclosure. I’ll send the revised dimensions after lunch.</p>
+                  <div class="p-i" style="--d:3; display: flex; gap: 10px; flex-wrap: wrap; align-items: center"><span class="tag gold">Promise detected</span><span style="color: var(--a-ink-2); font-size: 14px">Revised dimensions, after lunch</span></div>
+                </div>
+              </article>
+
+              <article class="st" data-st>
+                <div class="st-copy">
+                  <p class="st-time"><img src="assets/logos/neorecall.svg" alt="" width="34" height="34">10:31 · NeoRecall</p>
+                  <h3 class="st-h">It remembers, <em>then lets go.</em></h3>
+                  <p class="lede">The conversation becomes one memory. The recording is removed only after a receipt proves the transcript is durable.</p>
+                </div>
+                <div class="app">
+                  <div class="app-h p-i"><span>Memory</span><span class="tag">Hardware planning</span></div>
+                  <p class="p-i" style="--d:1; font-family: var(--serif); font-size: clamp(21px, 2.1vw, 28px); line-height: 1.2; letter-spacing: -.015em">The smaller enclosure was chosen; revised dimensions are due after lunch.</p>
+                  <ul class="well chk">
+                    <li class="p-i" style="--d:2"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5l3.2 3.2L14 5.5"></path></svg>Transcript persisted durably</li>
+                    <li class="p-i" style="--d:3"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5l3.2 3.2L14 5.5"></path></svg>Speaker evidence saved</li>
+                    <li class="p-i" style="--d:4"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5l3.2 3.2L14 5.5"></path></svg>Server audio unlinked</li>
+                    <li class="p-i" style="--d:5"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5l3.2 3.2L14 5.5"></path></svg>Client release authorized</li>
+                  </ul>
+                </div>
+              </article>
+
+              <article class="st" data-st>
+                <div class="st-copy">
+                  <p class="st-time"><img src="assets/logos/neoagent.svg" alt="" width="34" height="34">10:31 · NeoAgent</p>
+                  <h3 class="st-h">It acts, <em>and asks first.</em></h3>
+                  <p class="lede">A new memory is one of NeoAgent’s 42 triggers. It reads NeoRecall through read-only tools, prepares the follow-up and waits for your yes.</p>
+                </div>
+                <div class="app">
+                  <div class="app-h p-i"><span>Run · trigger</span><span class="mono" style="color: var(--a-gold)">neorecall_memory_created</span></div>
+                  <div class="rq p-i" style="--d:1"><span><b style="font-weight: 600">search</b> <span style="color: var(--a-ink-3)">· read-only</span></span><span class="tag ok">Done</span></div>
+                  <div class="rq p-i" style="--d:2"><span><b style="font-weight: 600">Reminder set</b> <span style="color: var(--a-ink-3)">· today, 13:30</span></span><span class="tag ok">Done</span></div>
+                  <div class="well p-i" style="--d:3; display: grid; gap: 10px">
+                    <span class="tag gold" style="justify-self: start">Waiting for approval</span>
+                    <span>Send the revised dimensions to the hardware thread?</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="st" data-st>
+                <div class="st-copy">
+                  <p class="st-time"><img src="assets/logos/neorouter.svg" alt="" width="34" height="34">10:31 · NeoRouter</p>
+                  <h3 class="st-h">It finds a model <em>that’s free right now.</em></h3>
+                  <p class="lede">Every thought in that run went through one endpoint. Busy models are skipped without a retry, and free allowances are used first.</p>
+                </div>
+                <div class="app">
+                  <p class="endpoint p-i">POST /v1/chat/completions · model: <b>"auto"</b></p>
+                  <div class="rq p-i" style="--d:1"><s>Nemotron 3 Ultra</s><span class="tag bad">busy</span></div>
+                  <div class="rq p-i" style="--d:2"><s>GLM 5.3 Flash</s><span class="tag bad">busy</span></div>
+                  <div class="rq p-i" style="--d:3"><strong>Qwen3.6 27B</strong><span class="tag gold">0.6 s · free</span></div>
+                  <div class="well p-i" style="--d:4; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap"><span style="color: var(--a-ink-2)">Spent on this run</span><span style="font-family: var(--serif); font-size: 30px; color: var(--a-gold)">$0.00</span></div>
+                </div>
+              </article>
+
+            </div>
+            <div class="rail" data-rail aria-hidden="true">
+              <span class="rail-i on" data-rail-i><b>Hears</b></span>
+              <span class="rail-i" data-rail-i><b>Remembers</b></span>
+              <span class="rail-i" data-rail-i><b>Acts</b></span>
+              <span class="rail-i" data-rail-i><b>Chooses</b></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SYSTEMS: one entry per product in PRODUCTS below -->
+    <section class="sec" id="systems" aria-label="The systems">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow rv"><i class="pip"></i>The systems</p>
+          <h2 class="h2 rv" style="--d:1">Complete alone. <em>Better together.</em></h2>
+        </div>
+        <div class="chaps">
+          <sc-for list="{{products}}" as="c">
+            <article class="chap t-{{c.id}}" id="{{c.id}}" data-chap style="scroll-margin-top: 88px">
+              <div class="chap-copy">
+                <div class="chap-id"><img src="{{c.logo}}" alt="" width="56" height="56"><div><b>{{c.name}}</b><span class="chap-verb">{{c.verb}}</span></div></div>
+                <h3 class="h3">{{c.tagline}}</h3>
+                <p style="color: var(--ink-2)">{{c.body}}</p>
+                <ul class="facts">
+                  <sc-for list="{{c.facts}}" as="f"><li><b>{{f.n}}</b><span>{{f.t}}</span></li></sc-for>
+                </ul>
+                <div class="chap-links">
+                  <a class="btn btn-g btn-s" href="{{c.repo}}" target="_blank" rel="noopener">GitHub</a>
+                  <a class="btn btn-g btn-s" href="{{c.docs}}" target="_blank" rel="noopener">{{c.docsLabel}}</a>
+                </div>
+              </div>
+              <div class="chap-demo">
+
+                <sc-if value="{{c.image}}"><img src="{{c.image}}" alt="{{c.imageAlt}}" style="border-radius: 18px; border: 1px solid var(--line)" loading="lazy" decoding="async"></sc-if>
+
+                <sc-if value="{{c.isRecall}}">
+                  <div class="app">
+                    <div class="app-h"><span>Ask your day</span><span class="tag">Sample data</span></div>
+                    <div class="wave" style="height: 34px" aria-hidden="true"><sc-for list="{{wave}}" as="b"><i style="--i:{{b.i}};--h:{{b.h}}"></i></sc-for></div>
+                    <div class="bubble" data-ask-q>{{ask.q}}</div>
+                    <div data-ask-a style="display: grid; gap: 10px">
+                      <div class="ans" data-ask-words><sc-for list="{{ask.words}}" as="w"><span class="awd" style="--i:{{$index}}">{{w}}</span></sc-for></div>
+                      <div class="well" style="padding-block: 6px" data-ask-cites><sc-for list="{{ask.cites}}" as="s"><div class="cite"><time>{{s.t}}</time><span>{{s.w}}</span><span class="tag">{{s.k}}</span></div></sc-for></div>
+                    </div>
+                    <div class="chips"><sc-for list="{{askChips}}" as="q"><button class="chip {{q.cls}}" type="button" data-ask="{{$index}}">{{q.q}}</button></sc-for></div>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{c.isAgent}}">
+                  <div class="app">
+                    <div class="ag-top">
+                      <div class="mascot" data-mascot aria-hidden="true"><sc-for list="{{dots}}" as="d"><i class="md"><b></b></i></sc-for></div>
+                      <div style="display: grid; gap: 4px; min-width: 0">
+                        <span class="app-h"><span>Left running · via WhatsApp</span></span>
+                        <p>Find a dentist that takes my insurance, and book it.</p>
+                      </div>
+                    </div>
+                    <ul class="log">
+                      <li style="--i:0"><time>08:12</time><b>Searched</b><span>Practices near you, filtered by the insurer already in its memory.</span></li>
+                      <li style="--i:1"><time>08:19</time><b>Browsed</b><span>Opened the booking page in a real browser and filled the form.</span></li>
+                      <li style="--i:2"><time>08:24</time><b>Asked you</b><span>Two slots left. Sent both back to the thread you started in.</span></li>
+                      <li style="--i:3"><time>now</time><b>Holding</b><span>It won’t confirm an appointment without you.</span></li>
+                    </ul>
+                    <div class="chips" style="gap: 6px"><span class="tag">WhatsApp</span><span class="tag">Telegram</span><span class="tag">Signal</span><span class="tag">Discord</span><span class="tag">Slack</span><span class="tag">Matrix</span></div>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{c.isRouter}}">
+                  <div class="app" data-router>
+                    <div class="app-h"><span>Routing · model: "auto"</span><span class="tag">Sample data</span></div>
+                    <div class="bubble">Why does this test fail only on CI?</div>
+                    <div class="chips" role="group" aria-label="Routing style"><sc-for list="{{presets}}" as="s"><button class="chip {{s.cls}}" type="button" data-preset="{{$index}}">{{s.name}}</button></sc-for></div>
+                    <div class="rt-list"><sc-for list="{{rows}}" as="r"><div class="rt {{r.cls}}" data-rt style="transform: translateY({{r.y}}px)"><i class="dt"></i><span class="nm">{{r.name}}</span><span class="tm" data-rt-time>{{r.time}}</span></div></sc-for></div>
+                  </div>
+                </sc-if>
+
+              </div>
+            </article>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="NeoLabs in numbers">
+      <div class="wrap">
+        <div class="stats">
+          <sc-for list="{{stats}}" as="s">
+            <div class="stat rv" style="--d:{{$index}}"><b><span data-count="{{s.n}}">{{s.n}}</span>{{s.suffix}}</b><span>{{s.t}}</span></div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONNECTIONS -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow rv"><i class="pip"></i>The seams</p>
+          <h2 class="h2 rv" style="--d:1">Each one makes the others <em>better.</em></h2>
+          <p class="lede rv" style="--d:2">No required suite and no shared cloud. Run one, and connect the next when you want it.</p>
+        </div>
+        <div class="links3">
+          <div class="lk spot rv" style="--d:0" data-spot>
+            <div class="lk-path"><img src="assets/logos/neorecall.svg" alt="NeoRecall" width="46" height="46"><i class="lk-line" style="--d:0"></i><img src="assets/logos/neoagent.svg" alt="NeoAgent" width="46" height="46"></div>
+            <h3>The agent can read your day.</h3>
+            <p>NeoAgent signs in with OAuth and gets seven read-only tools and three triggers. It can search your memories and can never change them.</p>
+          </div>
+          <div class="lk spot rv" style="--d:1" data-spot>
+            <div class="lk-path"><img src="assets/logos/neoagent.svg" alt="NeoAgent" width="46" height="46"><i class="lk-line" style="--d:1"></i><img src="assets/logos/neorouter.svg" alt="NeoRouter" width="46" height="46"></div>
+            <h3>The agent gets every model.</h3>
+            <p>Connect NeoRouter for the whole server or for one person. Your agents stop depending on any single provider’s uptime.</p>
+          </div>
+          <div class="lk spot rv" style="--d:2" data-spot>
+            <div class="lk-path"><img src="assets/logos/neorecall.svg" alt="NeoRecall" width="46" height="46"><i class="lk-line" style="--d:2"></i><img src="assets/logos/neorouter.svg" alt="NeoRouter" width="46" height="46"></div>
+            <h3>Memory runs on any model.</h3>
+            <p>NeoRecall works with any OpenAI-compatible transcription and language service, so NeoRouter’s endpoint can supply both.</p>
+          </div>
+        </div>
+        <p class="note rv">Prefer your own tools? Paste NeoRecall’s MCP URL into Claude, ChatGPT or Cursor for read-only recall.</p>
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section class="sec" id="why" style="background: var(--bg-2); border-block: 1px solid var(--line)">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow rv"><i class="pip"></i>Why NeoLabs</p>
+          <h2 class="h2 rv" style="--d:1">A hosted assistant rents you all of this. <em>Here you keep it.</em></h2>
+        </div>
+        <div class="ledger">
+          <div class="lr head rv"><span></span><span class="us"><img src="assets/logos/neolabs.svg" alt="" width="26" height="26">NeoLabs</span><span>Hosted assistants</span></div>
+          <sc-for list="{{ledger}}" as="r">
+            <div class="lr rv" style="--d:{{$index}}"><span class="k">{{r.k}}</span><span class="a">{{r.a}}</span><span class="b">{{r.b}}</span></div>
+          </sc-for>
+        </div>
+        <p class="fine rv">The hosted column summarizes Meta Muse, OpenAI Dots, Gemini Spark, Grok Bot and Poke, from the <a href="https://github.com/NeoLabs-Systems/NeoAgent/blob/main/docs/why-neoagent.md" target="_blank" rel="noopener">dated comparison in NeoAgent’s docs</a>, reviewed October 14, 2026. These products change quickly.</p>
+        <div class="honest">
+          <div class="rv"><b>Already on OpenClaw or Hermes?</b>NeoAgent’s setup finds them and brings over your agents, memory, skills, keys and automations.</div>
+          <div class="rv" style="--d:1"><b>When a hosted assistant is the better call</b>If you want zero setup and are fine with its cloud, its model and its region list, use one.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GUARANTEES -->
+    <section class="sec">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="eyebrow rv"><i class="pip"></i>Boundaries</p>
+          <h2 class="h2 rv" style="--d:1">Promises, <em>written in code.</em></h2>
+        </div>
+        <div class="bento">
+          <div class="bt wide spot rv t-neoagent" data-spot><span class="by">NeoAgent</span><h3>Asks, then acts.</h3><p>Approval before risky actions, per-tool permissions and read-only integrations. Every step lands in a log you can inspect or stop.</p></div>
+          <div class="bt spot rv t-neoagent" style="--d:1" data-spot><span class="by">NeoAgent</span><h3>Logins the model never sees.</h3><p>Bitwarden credentials stay out of the model’s reach.</p></div>
+          <div class="bt spot rv t-neorecall" data-spot><span class="by">NeoRecall</span><h3>No covert mode.</h3><p>A recording notice and a persistent recording state, always.</p></div>
+          <div class="bt wide spot rv t-neorecall" style="--d:1" data-spot><span class="by">NeoRecall</span><h3>Deletion is a protocol, not a promise.</h3><p>Clients hold every audio chunk until a terminal receipt proves the transcript is durable and the server copy is gone.</p></div>
+          <div class="bt wide spot rv t-neorouter" data-spot><span class="by">NeoRouter</span><h3>Free means free.</h3><p>Free-only keys never touch a paid model. Budgets stop paid keys at the limit you set, per day, month or in total.</p></div>
+          <div class="bt spot rv t-neorouter" style="--d:1" data-spot><span class="by">NeoRouter</span><h3>Prompts stay out of the logs.</h3><p>Only request metadata is logged. Provider keys stay encrypted and private per account.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REAL SCREENS -->
+    <section style="padding-bottom: clamp(84px, 11vw, 168px)" data-gal aria-label="Screens from the apps">
+      <div class="wrap sec-head">
+        <p class="eyebrow rv"><i class="pip"></i>In the apps</p>
+        <h2 class="h2 rv" style="--d:1">Already running.</h2>
+      </div>
+      <div class="gal">
+        <div class="gal-row" data-gal-row="a">
+          <img src="assets/screens/agent-chat.jpg" alt="NeoAgent comparing three flats in a table" width="2400" height="1500" loading="lazy" decoding="async">
+          <img src="assets/screens/recall-moments.jpg" alt="NeoRecall moments with speakers and transcript lines" width="2400" height="1500" loading="lazy" decoding="async">
+          <img src="assets/screens/router-banner.jpg" alt="NeoRouter routing a request to the model available right now" width="2560" height="1280" loading="lazy" decoding="async">
+          <img src="assets/screens/agent-memory.jpg" alt="NeoAgent memory knowledge graph" width="2400" height="1500" loading="lazy" decoding="async">
+        </div>
+        <div class="gal-row" data-gal-row="b">
+          <img src="assets/screens/recall-ask.jpg" alt="NeoRecall answering what was agreed this morning" width="2400" height="1500" loading="lazy" decoding="async">
+          <img src="assets/screens/agent-runs.jpg" alt="NeoAgent run timeline with tool steps" width="2400" height="1500" loading="lazy" decoding="async">
+          <img src="assets/screens/recall-memory.jpg" alt="A NeoRecall memory with highlights and the conversation it came from" width="2400" height="1500" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </section>
+
+    <!-- INSTALL -->
+    <section class="sec" id="install" style="padding-top: 0">
+      <div class="wrap inst">
+        <div class="inst-copy">
+          <p class="eyebrow rv"><i class="pip"></i>Get started</p>
+          <h2 class="h2 rv" style="--d:1; font-size: clamp(42px, 4.8vw, 72px)">One command. <em>Your machine.</em></h2>
+          <p class="lede rv" style="--d:2">Start with whichever one you need today. Each runs on a home server, a NAS, a VPS or your own computer, and the first account you create becomes the administrator.</p>
+        </div>
+        <div class="term rv" style="--d:2">
+          <div class="term-tabs" role="group" aria-label="Choose a system">
+            <sc-for list="{{tabs}}" as="t"><button class="tab {{t.cls}}" type="button" data-tab="{{$index}}"><img src="{{t.logo}}" alt="" width="22" height="22">{{t.name}}</button></sc-for>
+          </div>
+          <sc-for list="{{tabs}}" as="t">
+            <div data-panel="{{$index}}" {{t.hiddenAttr}}>
+              <div class="term-b">
+                <p class="term-cmd" data-cmd><i>$</i>{{t.cmd}}<span class="caret" aria-hidden="true"></span></p>
+                <p class="term-out">{{t.then}}</p>
+              </div>
+              <div class="term-f">
+                <span>{{t.note}}</span>
+                <button class="copy" type="button" data-copy>Copy</button>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSE -->
+    <section class="end">
+      <svg class="end-mark" viewBox="0 0 100 100" aria-hidden="true">
+        <circle class="o1" cx="50" cy="50" r="17" stroke-width=".9" stroke-dasharray="78 29"></circle>
+        <circle class="o2" cx="50" cy="50" r="30" stroke-width=".9" stroke-dasharray="150 39"></circle>
+        <circle class="o1" cx="50" cy="50" r="44" stroke-width=".5" stroke-dasharray="220 56"></circle>
+      </svg>
+      <div class="wrap end-in">
+        <h2 class="h2 rv" style="font-size: clamp(52px, 8.6vw, 136px)">Start with one. <em>Keep all three.</em></h2>
+        <p class="lede rv" style="--d:1; max-width: 34em">Open source under AGPL-3.0, on hardware you already own.</p>
+        <div class="cta-row rv" style="--d:2">
+          <a class="btn btn-p" href="#install" data-mag>Get started<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></a>
+          <a class="btn btn-g" href="https://discord.gg/f59rg2RwUT" target="_blank" rel="noopener" data-mag>Join the Discord</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-grid">
+      <div class="foot-note">
+        <a class="brand" href="#top" style="color: var(--ink)"><img src="assets/logos/neolabs.svg" alt="" width="32" height="32"><span>NeoLabs</span></a>
+        <p>Self-hosted, privacy-first AI software. All three systems are in beta, so expect breaking changes.</p>
+      </div>
+      <div>
+        <h3>Systems</h3>
+        <sc-for list="{{products}}" as="p"><a href="{{p.repo}}" target="_blank" rel="noopener">{{p.name}}</a></sc-for>
+      </div>
+      <div>
+        <h3>Docs</h3>
+        <sc-for list="{{products}}" as="p"><a href="{{p.docs}}" target="_blank" rel="noopener">{{p.name}}</a></sc-for>
+      </div>
+      <div>
+        <h3>NeoLabs</h3>
+        <a href="https://github.com/NeoLabs-Systems" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://discord.gg/f59rg2RwUT" target="_blank" rel="noopener">Discord</a>
+        <a href="https://github.com/neooriginal" target="_blank" rel="noopener">Made by Neo</a>
+      </div>
+    </div>
+    <div class="foot-word" aria-hidden="true">NeoLabs</div>
+  </footer>
+</div>
+
+<script type="application/json" id="demo-data">{{{demoJson}}}</script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
