@@ -7,7 +7,7 @@
 <p align="center"><strong>AI you actually own.</strong></p>
 
 <p align="center">
-  Three self-hosted systems that work as one.<br>
+  Self-hosted systems that work as one.<br>
   On your hardware, with the models you choose.
 </p>
 
@@ -15,6 +15,7 @@
   <a href="https://github.com/NeoLabs-Systems/NeoRecall"><img alt="NeoRecall" src="https://img.shields.io/badge/NeoRecall-hears-6fb0a4?style=for-the-badge&labelColor=0e1511"></a>
   <a href="https://github.com/NeoLabs-Systems/NeoAgent"><img alt="NeoAgent" src="https://img.shields.io/badge/NeoAgent-acts-84ba87?style=for-the-badge&labelColor=0e1511"></a>
   <a href="https://github.com/NeoLabs-Systems/NeoRouter"><img alt="NeoRouter" src="https://img.shields.io/badge/NeoRouter-chooses-7a9bb8?style=for-the-badge&labelColor=0e1511"></a>
+  <a href="https://github.com/NeoLabs-Systems/NeoCloud"><img alt="NeoCloud" src="https://img.shields.io/badge/NeoCloud-keeps-a49dc9?style=for-the-badge&labelColor=0e1511"></a>
 </p>
 
 <p align="center">
@@ -23,23 +24,29 @@
 
 <table>
   <tr>
-    <td width="33%" valign="top">
+    <td width="25%" valign="top">
       <a href="https://github.com/NeoLabs-Systems/NeoRecall"><img src="landing/assets/logos/neorecall.svg" alt="" width="56"></a>
       <h3><a href="https://github.com/NeoLabs-Systems/NeoRecall">NeoRecall</a></h3>
       Private audio memory you host yourself.<br>
       <b>It hears your day.</b>
     </td>
-    <td width="33%" valign="top">
+    <td width="25%" valign="top">
       <a href="https://github.com/NeoLabs-Systems/NeoAgent"><img src="landing/assets/logos/neoagent.svg" alt="" width="56"></a>
       <h3><a href="https://github.com/NeoLabs-Systems/NeoAgent">NeoAgent</a></h3>
       The personal AI agent you host yourself.<br>
       <b>It acts on it, and asks first.</b>
     </td>
-    <td width="33%" valign="top">
+    <td width="25%" valign="top">
       <a href="https://github.com/NeoLabs-Systems/NeoRouter"><img src="landing/assets/logos/neorouter.svg" alt="" width="56"></a>
       <h3><a href="https://github.com/NeoLabs-Systems/NeoRouter">NeoRouter</a></h3>
       Every model. One endpoint.<br>
       <b>It picks the best one for every request.</b>
+    </td>
+    <td width="25%" valign="top">
+      <a href="https://github.com/NeoLabs-Systems/NeoCloud"><img src="landing/assets/logos/neocloud.svg" alt="" width="56"></a>
+      <h3><a href="https://github.com/NeoLabs-Systems/NeoCloud">NeoCloud</a></h3>
+      Your files. Your server. Encrypted.<br>
+      <b>It keeps your files.</b> <sub>In development</sub>
     </td>
   </tr>
 </table>
@@ -73,6 +80,10 @@
 
 **[NeoRouter](https://github.com/NeoLabs-Systems/NeoRouter)** · [API docs](https://neolabs-systems.github.io/NeoRouter/api/)
 
+<a href="https://github.com/NeoLabs-Systems/NeoCloud"><img src=".github/readme/neocloud.jpg" alt="NeoCloud: your files, your server, encrypted" width="100%"></a>
+
+**[NeoCloud](https://github.com/NeoLabs-Systems/NeoCloud)** · [Docs](https://github.com/NeoLabs-Systems/NeoCloud/blob/main/docs/getting-started.md) · In development, not ready for files you can't lose
+
 <p align="center">
   <img src=".github/readme/numbers.jpg" alt="80+ model providers, 42 triggers, 24 chat channels, 0 prompts in NeoRouter's logs" width="100%">
 </p>
@@ -84,6 +95,7 @@
 | **NeoRecall → NeoAgent** | NeoAgent signs in with OAuth and gets seven read-only tools and three triggers. It can search your memories and can never change them. |
 | **NeoAgent → NeoRouter** | Connect NeoRouter for the whole server or for one person. Your agents stop depending on any single provider's uptime. |
 | **NeoRecall → NeoRouter** | NeoRecall works with any OpenAI-compatible transcription and language service, so NeoRouter's endpoint can supply both. |
+| **NeoCloud → NeoRouter** | NeoCloud connects to NeoRouter with a device sign-in to name, tag and summarize files. It stays off until an admin turns it on and each person opts in. |
 
 Prefer your own tools? Paste NeoRecall's MCP URL into Claude, ChatGPT or Cursor for read-only recall.
 
@@ -92,7 +104,7 @@ Prefer your own tools? Paste NeoRecall's MCP URL into Claude, ChatGPT or Cursor 
 </p>
 
 <p align="center">
-  <img src=".github/readme/boundaries.jpg" alt="Promises, written in code: approval before risky actions, logins the model never sees, no covert mode, proof before delete, free means free, and prompts stay out of the logs" width="100%">
+  <img src=".github/readme/boundaries.jpg" alt="Promises, written in code: approval before risky actions, logins the model never sees, no covert mode, proof before delete, free means free, prompts stay out of the logs, vaults the server can't read, and keys all the way down" width="100%">
 </p>
 
 ## 🚀 Get started
@@ -117,10 +129,16 @@ bash <(curl -fsSL https://raw.githubusercontent.com/NeoLabs-Systems/NeoAgent/mai
 bash <(curl -fsSL https://raw.githubusercontent.com/NeoLabs-Systems/NeoRouter/main/install.sh)
 ```
 
+**[NeoCloud](https://github.com/NeoLabs-Systems/NeoCloud)**, then open http://localhost:3344 and back up the master key with `neocloud keys export`
+
+```bash
+bash <(curl -fsSL https://raw.githubusercontent.com/NeoLabs-Systems/NeoCloud/main/install.sh)
+```
+
 <br clear="right">
 
 <p align="center">
-  <img src=".github/readme/close.jpg" alt="Start with one. Keep all three." width="100%">
+  <img src=".github/readme/close.jpg" alt="Start with one. Keep them all." width="100%">
 </p>
 
 <p align="center"><sub>Made with ❤️ by <a href="https://github.com/neooriginal">Neo</a> · <a href="https://github.com/NeoLabs-Systems">NeoLabs Systems</a></sub></p>

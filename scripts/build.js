@@ -90,6 +90,7 @@ const scope = {
   askChips: site.ASKS.map((a, i) => ({ q: a.q, cls: i === 0 ? 'on' : '' })),
   presets: site.PRESETS.map((p, i) => ({ name: p.name, cls: i === 0 ? 'on' : '' })),
   rows: routerRows(0),
+  segs: Array.from({ length: 16 }, (_, i) => ({ i })),
   stats: site.STATS,
   ledger: site.LEDGER,
   tabs: site.PRODUCTS.map((p, i) => ({ ...p, cls: i === 0 ? 'on' : '', hiddenAttr: i === 0 ? '' : 'hidden' })),
@@ -101,6 +102,18 @@ fs.mkdirSync(out, { recursive: true });
 const page = (name, values) => fs.writeFileSync(path.join(out, `${name}.html`), render(fs.readFileSync(path.join(src, `${name}.template.html`), 'utf8'), values));
 page('index', scope);
 page('404', { base });
+
+const c = site.NEOCLOUD;
+const pick = (list, i) => list.map((x, j) => ({ ...x, cls: j === i ? 'on' : '', pressed: String(j === i), hiddenAttr: j === i ? '' : 'hidden' }));
+page('neocloud', {
+  meta: { title: 'NeoCloud: your files, your server, encrypted · NeoLabs', description: 'NeoCloud is self-hosted, encrypted file storage for the whole household or team, from NeoLabs.', url: siteUrl && `${siteUrl}neocloud.html`, image: siteUrl && `${siteUrl}assets/social-preview.png` },
+  segs: scope.segs,
+  levels: pick(c.levels, 0),
+  feats: c.feats.map((f, i) => ({ ...f, d: i % 3 })),
+  targets: c.targets,
+  devices: c.devices.map((d) => ({ ...d, cls: d.cls || '' })),
+  install: pick(c.install, 0)
+});
 for (const entry of fs.readdirSync(src)) {
   if (entry === 'data' || entry.endsWith('.template.html')) continue;
   fs.cpSync(path.join(src, entry), path.join(out, entry), { recursive: true });

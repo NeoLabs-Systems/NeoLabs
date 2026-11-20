@@ -195,7 +195,7 @@
 
   /* ---------- the hero: the NeoLabs mark at full size, with a node per product ---------- */
   function draw(now) {
-    if (!ctx || !anchor) return;
+    if (!ctx || !anchor || !(anchor.R > 0)) return;
     const c = ctx;
     const t = now / 1000;
     const dt = Math.min(0.05, (now - (lastT || now)) / 1000);

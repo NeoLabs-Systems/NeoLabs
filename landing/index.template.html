@@ -64,7 +64,7 @@
             <span class="ln" style="--d:1" aria-hidden="true"><span>actually</span></span>
             <span class="ln" style="--d:2" aria-hidden="true"><span><em>own.</em></span></span>
           </h1>
-          <p class="lede fade-in">NeoLabs builds three self-hosted systems that work as one. NeoRecall hears your day, NeoAgent acts on it, NeoRouter picks the best model for every request. On your hardware, with the models you choose.</p>
+          <p class="lede fade-in">NeoLabs builds self-hosted systems that work as one. NeoRecall hears your day, NeoAgent acts on it, NeoRouter picks the best model and NeoCloud keeps your files. On your hardware, with the models you choose.</p>
           <div class="cta-row fade-in">
             <a class="btn btn-p" href="#install" data-mag>Get started<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></a>
             <a class="btn btn-g" href="#how" data-mag>See how it fits together</a>
@@ -195,13 +195,14 @@
           <sc-for list="{{products}}" as="c">
             <article class="chap t-{{c.id}}" id="{{c.id}}" data-chap style="scroll-margin-top: 88px">
               <div class="chap-copy">
-                <div class="chap-id"><img src="{{c.logo}}" alt="" width="56" height="56"><div><b>{{c.name}}</b><span class="chap-verb">{{c.verb}}</span></div></div>
+                <div class="chap-id"><img src="{{c.logo}}" alt="" width="56" height="56"><div><b>{{c.name}}<sc-if value="{{c.status}}"> <span class="chap-status">{{c.status}}</span></sc-if></b><span class="chap-verb">{{c.verb}}</span></div></div>
                 <h3 class="h3">{{c.tagline}}</h3>
                 <p style="color: var(--ink-2)">{{c.body}}</p>
                 <ul class="facts">
                   <sc-for list="{{c.facts}}" as="f"><li><b>{{f.n}}</b><span>{{f.t}}</span></li></sc-for>
                 </ul>
                 <div class="chap-links">
+                  <sc-if value="{{c.page}}"><a class="btn btn-p btn-s" href="{{c.page}}">Explore {{c.name}}</a></sc-if>
                   <a class="btn btn-g btn-s" href="{{c.repo}}" target="_blank" rel="noopener">GitHub</a>
                   <a class="btn btn-g btn-s" href="{{c.docs}}" target="_blank" rel="noopener">{{c.docsLabel}}</a>
                 </div>
@@ -209,6 +210,21 @@
               <div class="chap-demo">
 
                 <sc-if value="{{c.image}}"><img src="{{c.image}}" alt="{{c.imageAlt}}" style="border-radius: 18px; border: 1px solid var(--line)" loading="lazy" decoding="async"></sc-if>
+
+                <sc-if value="{{c.isCloud}}">
+                  <div class="app">
+                    <div class="app-h"><span>Uploading to Photos / 2026</span><span class="tag gold">AES-256</span></div>
+                    <div class="cl-bar"><i></i></div>
+                    <div class="cl-segs" aria-hidden="true"><sc-for list="{{segs}}" as="s"><i style="--i:{{s.i}}"></i></sc-for></div>
+                    <div class="app-h" style="letter-spacing: 0"><span>Encrypting in 64 KB segments</span><span>Sample upload</span></div>
+                    <ul class="cl-keys">
+                      <li><span class="cl-n">01</span><b>Master key</b><span>on your server</span></li>
+                      <li><span class="cl-n">02</span><b>Account key</b><span>one per person</span></li>
+                      <li><span class="cl-n">03</span><b>File key</b><span>one per file</span></li>
+                      <li><span class="cl-n">04</span><b>Vault folders</b><span>encrypted on your devices</span></li>
+                    </ul>
+                  </div>
+                </sc-if>
 
                 <sc-if value="{{c.isRecall}}">
                   <div class="app">
@@ -292,6 +308,11 @@
             <h3>Memory runs on any model.</h3>
             <p>NeoRecall works with any OpenAI-compatible transcription and language service, so NeoRouter’s endpoint can supply both.</p>
           </div>
+          <div class="lk spot rv" style="--d:3" data-spot>
+            <div class="lk-path"><img src="assets/logos/neocloud.svg" alt="NeoCloud" width="46" height="46"><i class="lk-line" style="--d:3"></i><img src="assets/logos/neorouter.svg" alt="NeoRouter" width="46" height="46"></div>
+            <h3>Your files get every model.</h3>
+            <p>NeoCloud connects to NeoRouter with a device sign-in to name, tag and summarize files. It stays off until an admin turns it on and each person opts in.</p>
+          </div>
         </div>
         <p class="note rv">Prefer your own tools? Paste NeoRecall’s MCP URL into Claude, ChatGPT or Cursor for read-only recall.</p>
       </div>
@@ -332,6 +353,8 @@
           <div class="bt wide spot rv t-neorecall" style="--d:1" data-spot><span class="by">NeoRecall</span><h3>Deletion is a protocol, not a promise.</h3><p>Clients hold every audio chunk until a terminal receipt proves the transcript is durable and the server copy is gone.</p></div>
           <div class="bt wide spot rv t-neorouter" data-spot><span class="by">NeoRouter</span><h3>Free means free.</h3><p>Free-only keys never touch a paid model. Budgets stop paid keys at the limit you set, per day, month or in total.</p></div>
           <div class="bt spot rv t-neorouter" style="--d:1" data-spot><span class="by">NeoRouter</span><h3>Prompts stay out of the logs.</h3><p>Only request metadata is logged. Provider keys stay encrypted and private per account.</p></div>
+          <div class="bt spot rv t-neocloud" data-spot><span class="by">NeoCloud</span><h3>Vaults the server can’t read.</h3><p>Vault folders are encrypted on your devices with a passphrase the server never sees.</p></div>
+          <div class="bt wide spot rv t-neocloud" style="--d:1" data-spot><span class="by">NeoCloud</span><h3>Keys all the way down.</h3><p>A master key protects one key per person, and each of those one key per file. Files are sealed in 64 KB segments, so tampering is caught.</p></div>
         </div>
       </div>
     </section>
@@ -393,7 +416,7 @@
         <circle class="o1" cx="50" cy="50" r="44" stroke-width=".5" stroke-dasharray="220 56"></circle>
       </svg>
       <div class="wrap end-in">
-        <h2 class="h2 rv" style="font-size: clamp(52px, 8.6vw, 136px)">Start with one. <em>Keep all three.</em></h2>
+        <h2 class="h2 rv" style="font-size: clamp(52px, 8.6vw, 136px)">Start with one. <em>Keep them all.</em></h2>
         <p class="lede rv" style="--d:1; max-width: 34em">Open source under AGPL-3.0, on hardware you already own.</p>
         <div class="cta-row rv" style="--d:2">
           <a class="btn btn-p" href="#install" data-mag>Get started<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"></path></svg></a>
@@ -407,7 +430,7 @@
     <div class="wrap foot-grid">
       <div class="foot-note">
         <a class="brand" href="#top" style="color: var(--ink)"><img src="assets/logos/neolabs.svg" alt="" width="32" height="32"><span>NeoLabs</span></a>
-        <p>Self-hosted, privacy-first AI software. All three systems are in beta, so expect breaking changes.</p>
+        <p>Self-hosted, privacy-first AI software. Every system is in beta and NeoCloud is still in development, so expect breaking changes.</p>
       </div>
       <div>
         <h3>Systems</h3>

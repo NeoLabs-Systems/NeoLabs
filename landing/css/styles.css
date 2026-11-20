@@ -10,7 +10,7 @@ body { margin: 0; background: #0e1511; }
   --gold: #e1b052; --gold-2: #eac272; --gold-ink: #eac272; --gold-soft: rgba(225,176,82,.14);
   --btn: #e1b052; --btn-ink: #0e1511; --btn-hover: #eac272;
   --nav: rgba(10,15,12,.72);
-  --c-agent: #84ba87; --c-router: #7a9bb8; --c-recall: #6fb0a4;
+  --c-agent: #84ba87; --c-router: #7a9bb8; --c-recall: #6fb0a4; --c-cloud: #a49dc9;
   --shadow: 0 48px 110px -40px rgba(0,0,0,.75), 0 20px 48px -28px rgba(0,0,0,.42);
   --orbit-rgb: 240,232,214; --dust-rgb: 234,194,114; --glow-rgb: 225,176,82;
   /* the app surface stays dark in both themes, as on the product pages */
@@ -35,7 +35,7 @@ body { margin: 0; background: #0e1511; }
     --gold: #b07d2b; --gold-2: #c8943f; --gold-ink: #8a5f1c; --gold-soft: rgba(176,125,43,.14);
     --btn: #1c2117; --btn-ink: #fdfcf8; --btn-hover: #2a3226;
     --nav: rgba(244,241,232,.76);
-    --c-agent: #5e6b4c; --c-router: #3d5a73; --c-recall: #2f7d6e;
+    --c-agent: #5e6b4c; --c-router: #3d5a73; --c-recall: #2f7d6e; --c-cloud: #5b5486;
     --shadow: 0 40px 90px -36px rgba(28,33,23,.36), 0 18px 40px -24px rgba(28,33,23,.16);
     --orbit-rgb: 96,82,50; --dust-rgb: 150,106,36; --glow-rgb: 176,125,43;
   }
@@ -198,6 +198,20 @@ body { margin: 0; background: #0e1511; }
 .t-neoagent { --tint: var(--c-agent); }
 .t-neorouter { --tint: var(--c-router); }
 .t-neorecall { --tint: var(--c-recall); }
+.t-neocloud { --tint: var(--c-cloud); }
+.chap-status { display: inline-flex; vertical-align: 3px; margin-left: 6px; padding: 2px 9px; border-radius: 999px; border: 1px solid var(--line-2); font-family: var(--mono); font-size: 11.5px; font-weight: 500; color: var(--ink-2); }
+
+/* cloud demo */
+.cl-bar { height: 6px; border-radius: 6px; background: var(--a-well); overflow: hidden; }
+.cl-bar i { display: block; height: 100%; border-radius: 6px; background: linear-gradient(90deg, #b9b3d8, var(--a-gold)); transform-origin: 0 50%; animation: cl-fill 6s var(--ease) infinite; }
+.cl-segs { display: grid; grid-template-columns: repeat(16, minmax(0, 1fr)); gap: 3px; }
+.cl-segs i { height: 12px; border-radius: 3px; background: var(--a-well); border: 1px solid var(--a-line); animation: cl-seal 6s steps(1) infinite; animation-delay: calc(var(--i) * .22s); }
+.cl-keys { display: grid; gap: 6px; margin-top: 4px; }
+.cl-keys li { display: grid; grid-template-columns: 34px auto minmax(0, 1fr); align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px; background: var(--a-well); border: 1px solid var(--a-line); font-size: 14px; }
+.cl-keys li span:last-child { color: var(--a-ink-3); font-family: var(--mono); font-size: 12px; text-align: right; }
+.cl-n { font-family: var(--mono); font-size: 12px; color: var(--a-gold); }
+@keyframes cl-fill { 0% { transform: scaleX(.08); } 80%, 100% { transform: scaleX(1); } }
+@keyframes cl-seal { 0% { background: var(--a-well); border-color: var(--a-line); } 6%, 100% { background: rgba(225,176,82,.75); border-color: rgba(225,176,82,.9); } }
 .chap-copy { position: relative; display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
 .chap-id { display: flex; align-items: center; gap: 14px; }
 .chap-id img { width: 56px; height: 56px; border-radius: 14px; }
@@ -256,7 +270,7 @@ body { margin: 0; background: #0e1511; }
 .stat > span { color: var(--ink-2); font-size: 15px; }
 
 /* ---------- connections ---------- */
-.links3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 16px; }
+.links3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); gap: 16px; }
 .lk { position: relative; border-radius: 24px; border: 1px solid var(--line); background: var(--surface); padding: 26px; display: grid; gap: 16px; align-content: start; overflow: hidden; }
 .lk-path { display: flex; align-items: center; gap: 10px; }
 .lk-path img { width: 46px; height: 46px; border-radius: 12px; flex: none; }
@@ -345,7 +359,7 @@ body { margin: 0; background: #0e1511; }
 @keyframes sheet { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
 
 /* ---------- responsive ---------- */
-@media (max-width: 1060px) {
+@media (max-width: 1180px) {
   .nav-links, .nav-end { display: none; }
   .burger { display: inline-flex; }
 }
