@@ -99,7 +99,10 @@ const scope = {
 
 fs.rmSync(out, { recursive: true, force: true });
 fs.mkdirSync(out, { recursive: true });
-const page = (name, values) => fs.writeFileSync(path.join(out, `${name}.html`), render(fs.readFileSync(path.join(src, `${name}.template.html`), 'utf8'), values));
+// Tags local CSS and JS links with a hash of the file, so a deploy never pairs new HTML with a cached old stylesheet.
+const hashOf = (rel) => require('crypto').createHash('sha256').update(fs.readFileSync(path.join(src, rel))).digest('hex').slice(0, 10);
+const version = (html) => html.replace(/(href|src)="([^"]*?)((?:css|js)\/[\w.-]+\.(?:css|js))"/g, (m, attr, pre, rel) => fs.existsSync(path.join(src, rel)) ? `${attr}="${pre}${rel}?v=${hashOf(rel)}"` : m);
+const page = (name, values) => fs.writeFileSync(path.join(out, `${name}.html`), version(render(fs.readFileSync(path.join(src, `${name}.template.html`), 'utf8'), values)));
 page('index', scope);
 page('404', { base });
 
